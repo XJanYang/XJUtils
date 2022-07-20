@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_bg_toast"
+    android:gravity="center"
+    android:minWidth="@dimen/dp_150"
+    android:minHeight="@dimen/dp_35"
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:maxWidth="@dimen/dp_150"
+        android:textColor="@color/white"
+        android:textSize="@dimen/dp_13" />
+
+</LinearLayout>
