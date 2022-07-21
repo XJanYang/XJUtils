@@ -31,7 +31,50 @@ public class ActivityManager {
         return activityStack;
     }
 
-    public static void addActivity(Activity activity){
+    public static void add(Activity activity){
         activityStack.add(activity);
+    }
+
+    public static void remove(Activity activity){
+        if (activityStack.contains(activity)) {
+            activityStack.remove(activity);
+        }
+    }
+
+    /**
+     * 获取当前Activity
+     * 最后一个入栈的
+     * @return
+     */
+    public static Activity getCurrent() {
+        return activityStack.lastElement();
+    }
+
+    public static void finish(){
+        finish(getCurrent());
+    }
+
+    public static void finish(Activity activity) {
+        try {
+        if (activity != null) {
+            remove(activity);
+            activity.finish();
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Activity getActivity(String clsName) {
+        try {
+            for (Activity a : activityStack) {
+                if (a.getClass().getSimpleName().equals(clsName)) {
+                    return a;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
