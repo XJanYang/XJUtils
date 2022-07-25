@@ -3,15 +3,19 @@ package cn.jane.xjutils;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cn.jane.xjutils.android.app.AppUtils;
 import cn.jane.xjutils.android.log.LogUtils;
 import cn.jane.xjutils.android.permission.PermissionUtils;
 import cn.jane.xjutils.android.textview.EditUtils;
+import cn.jane.xjutils.android.toast.ToastUtils;
 import cn.jane.xjutils.android.version.VersionUtils;
+import cn.jane.xjutils.time.TimeCountDownUtils;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,17 +33,31 @@ public class MainActivity extends AppCompatActivity {
 //        VersionUtils.getVersionName();
 //        VersionUtils.getVersionCode();
 
+        ToastUtils.setGravity(Gravity.TOP);
+        ToastUtils.ignoreIcLimit(true);
+        ToastUtils.ignoreTextLimit(false);
+        ToastUtils.setOrientation(LinearLayout.HORIZONTAL);
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 //                EditUtils.copy(textView.getText().toString());
-
-                PermissionUtils.gotoAppSystemSettings();
+                ToastUtils.showSuc(json);
             }
         });
 
         editText.setText(EditUtils.getTextFromClip());
 
+        TimeCountDownUtils.start(10, new TimeCountDownUtils.TimeCountDownListener() {
+            @Override
+            public void countDown(long newTime) {
+                LogUtils.e("----countDown" + newTime + "");
+            }
 
+            @Override
+            public void complete() {
+                LogUtils.e("----complete");
+            }
+        });
     }
 }
